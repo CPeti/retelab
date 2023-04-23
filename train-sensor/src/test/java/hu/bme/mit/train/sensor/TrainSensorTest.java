@@ -46,9 +46,16 @@ public class TrainSensorTest {
 
     @Test
     public void testOverrideSpeedLimit_aboveValidRange() {
-
-
         int speedLimit = 600;
+        int referenceSpeed = 50;
+        when(controller.getReferenceSpeed()).thenReturn(referenceSpeed);
+        sensor.overrideSpeedLimit(speedLimit);
+        verify(user, times(1)).setAlarmState(true);
+    }
+
+    @Test
+    public void testOverrideSpeedLimit_underValidRange() {
+        int speedLimit = -10;
         int referenceSpeed = 50;
         when(controller.getReferenceSpeed()).thenReturn(referenceSpeed);
         sensor.overrideSpeedLimit(speedLimit);

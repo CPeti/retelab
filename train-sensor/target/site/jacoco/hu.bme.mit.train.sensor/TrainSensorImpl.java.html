@@ -33,10 +33,10 @@ public class TrainSensorImpl implements TrainSensor {
 <span class="fc" id="L33">	}</span>
 
 	public void analyzeSpeed(int speedLimit, int referenceSpeed){
-<span class="pc bpc" id="L36" title="1 of 4 branches missed.">		if(speedLimit &lt; 0 || speedLimit &gt; 500){</span>
+<span class="fc bfc" id="L36" title="All 4 branches covered.">		if(speedLimit &lt; 0 || speedLimit &gt; 500){</span>
 <span class="fc" id="L37">			user.setAlarmState(true);</span>
 		}
-<span class="fc bfc" id="L39" title="All 2 branches covered.">		if(speedLimit * 2 &lt; referenceSpeed){</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">		else if(speedLimit * 2 &lt; referenceSpeed){</span>
 <span class="fc" id="L40">			user.setAlarmState(true);</span>
 		}
 <span class="fc" id="L42">	}</span>
