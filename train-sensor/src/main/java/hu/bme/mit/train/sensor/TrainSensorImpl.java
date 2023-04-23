@@ -26,8 +26,19 @@ public class TrainSensorImpl implements TrainSensor {
 
 	@Override
 	public void overrideSpeedLimit(int speedLimit) {
+		int referenceSpeed = controller.getReferenceSpeed();
+		analyzeSpeed(speedLimit, referenceSpeed);
 		this.speedLimit = speedLimit;
 		controller.setSpeedLimit(speedLimit);
+	}
+
+	public void analyzeSpeed(int speedLimit, int referenceSpeed){
+		if(speedLimit < 0 || speedLimit > 500){
+			user.setAlarmState(true);
+		}
+		if(speedLimit * 2 < referenceSpeed){
+			user.setAlarmState(true);
+		}
 	}
 
 	@Override
@@ -39,5 +50,7 @@ public class TrainSensorImpl implements TrainSensor {
 	public Table<String, Integer, Integer> getTachograph() {
 		return tachograph;
 	}
+
+	
 
 }
